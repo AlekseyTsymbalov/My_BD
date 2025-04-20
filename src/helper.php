@@ -24,4 +24,4 @@ function getPDO(): PDO
     }
 }
 
-var_dump(getPDO());
+//var_dump(getPDO());
