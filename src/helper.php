@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-const DB_HOST = 'localhost';
+const DB_HOST = 'postgres_015';
 const DB_NAME = 'test_db';
 const DB_USER = 'alex';
 const DB_PASSWORD = 'alex01';
@@ -11,7 +11,7 @@ function getPDO(): PDO
 {
     try {
         return new PDO(
-            "pgsql:host=" . DB_HOST . ";port=8080;dbname=" . DB_NAME . ";charset=utf8mb4",
+            "pgsql:host=" . DB_HOST . ";port=5432;dbname=" . DB_NAME,
             DB_USER,
             DB_PASSWORD,
             [
@@ -24,4 +24,4 @@ function getPDO(): PDO
     }
 }
 
-var_dump(phpinfo());
+var_dump(getPDO());
