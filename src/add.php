@@ -2,6 +2,7 @@
 declare(strict_types=1);
 
 require 'helper.php';
+header('Content-Type: application/json');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $task = trim($_POST['task'] ?? '');
