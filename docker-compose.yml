@@ -9,7 +9,7 @@ services:
     volumes:
       - ./src:/var/www/public   # Mount our source code
     networks:
-      - alex_network          # Connect to our network
+      - postgres_form_network          # Connect to our network
     environment:
       PHP_IDE_CONFIG: serverName=Docker # For Xdebug
     # Make container restart unless stopped manually
@@ -27,20 +27,21 @@ services:
     depends_on:
       - php                 # Wait for PHP container
     networks:
-      - alex_network
+      - postgres_form_network
     restart: unless-stopped
-  postgres_015:
+  postgres_form:
     image: postgres:17.4
-    container_name: postgres_container
+    container_name: to_do_list
     environment:
-      POSTGRES_USER: alex
-      POSTGRES_PASSWORD: alex01
-      POSTGRES_DB: test_db
+      POSTGRES_USER: irina
+      POSTGRES_PASSWORD: kula
+      POSTGRES_DB: list_db
       PGDATA: /var/lib/postgresql/data/pgdata
     ports:
-      - "8080:5432"
+      - "5440:5432"
     volumes:
       - ./pgdata:/var/lib/postgresql/data/pgdata
+      - ./sessions:/tmp
     deploy:
       resources:
         limits:
@@ -66,9 +67,9 @@ services:
     tty: true
     stdin_open: true
     networks:
-      - alex_network
+      - postgres_form_network
 networks:
-  alex_network:
+  postgres_form_network:
     driver: bridge
 volumes:
   pgdata:
