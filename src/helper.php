@@ -2,10 +2,10 @@
 
 declare(strict_types = 1);
 
-const DB_HOST = 'postgres_015';
-const DB_NAME = 'test_db';
-const DB_USER = 'alex';
-const DB_PASSWORD = 'alex01';
+const DB_HOST = 'postgres_form';
+const DB_NAME = 'list_db';
+const DB_USER = 'irina';
+const DB_PASSWORD = 'kula';
 
 function getPDO(): PDO
 {
@@ -23,5 +23,3 @@ function getPDO(): PDO
         die("Ошибка подключения: " . $e->getMessage());
     }
 }
-
-//var_dump(getPDO());
