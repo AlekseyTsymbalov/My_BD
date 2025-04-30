@@ -1,30 +1,35 @@
-$(document).read(function () {
-    $('form').submit(function (e) {
+$(document).ready(function() {
+    // 1. Отправка формы
+    $('form').submit(function(e) {
         e.preventDefault();
 
         $.ajax({
             url: 'add.php',
             method: 'POST',
-            data: $(this).serializable(),
-            success: function () {
-                $('#task').value('');
+            data: $(this).serialize(),
+            success: function() {
+                $('#task').val('');
                 loadTasks();
             },
+            error: function(xhr) {
+                alert('Ошибка: ' + xhr.responseText);
+            }
         });
     });
 
+    // 2. Загрузка задач
     function loadTasks() {
-        $('#tasklist').load(task_list.php);
+        $('#taskList').load('task_list.php');
     }
 
-    $(document).on('clik', '.delete-task', function () {
-        if(confirm('Удалить задачу?')) {
-            $.post('delete.php', {id: $(this).data('id')}, function () {
-                loadTasks()
+    // 3. Удаление задачи
+    $(document).on('click', '.delete-task', function() {
+        if (confirm('Удалить задачу?')) {
+            $.post('delete.php', {id: $(this).data('id')}, function() {
+                loadTasks();
+            }).fail(function(xhr) {
+                alert('Ошибка удаления: ' + xhr.responseText);
             });
         }
     });
 });
-
-
-

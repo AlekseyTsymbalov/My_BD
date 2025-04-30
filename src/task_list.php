@@ -2,6 +2,9 @@
 
 declare(strict_types = 1);
 
+require __DIR__ . '/helper.php';
+$pdo = getPDO();
+
 try {
     $pdo = getPDO();
     $query = $pdo->query("SELECT * FROM work_list ORDER BY id DESC");
@@ -20,5 +23,5 @@ try {
     echo '</ul>';
 } catch (PDOException $e) {
     echo '<div class="alert alert-danger mt-3">Ошибка добавления данных: '
-        .htmlspecialchars($e->getMessage()) . '</div>';
+        . htmlspecialchars($e->getMessage()) . '</div>';
 }
