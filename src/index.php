@@ -21,6 +21,9 @@ require 'helper.php';
             <input type="text" name="task" id="task" placeholder="Нужно сделать..." class="form-control">
             <button type="submit" name="sendTask" class="btn btn-success">Отправить</button>
         </form>
+        <div id="taskList">
+            <?php include 'task_list.php'; ?>
+        </div>
 
         <?php
         $pdo = getPDO();
@@ -33,6 +36,7 @@ require 'helper.php';
         ?>
 
     </div>
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="js/scripts.js"></script>
 </body>
 </html>
